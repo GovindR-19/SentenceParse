@@ -4,7 +4,8 @@ from nltk import pos_tag, word_tokenize, ne_chunk
 
 # # Input text
 # text = input("Enter a sentence or paragraph: ")
-text = "Did the quick brown fox jumped over the moon?"
+text = '''To bait fish withal; if it will feed nothing else,
+it will feed my revenge.'''
 
 # # Tokenize the input
 tokens = word_tokenize(text)
@@ -13,11 +14,10 @@ tags = pos_tag(tokens)
 
 tree = ne_chunk(tags)
 
-tree.draw()
 
-for word ,thingy in tags:
-    
-    if(thingy in "?.!;:"):
-        thingy = "Punctuation"
-
-    print(f'{thingy} : {word}')
+print('\nword\t\ttag\n')
+sentence = ""
+for word, tag in tags:
+   if(word not in ".,;"):
+    print( f"{word}\t\t{tag}")
+   
