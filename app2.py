@@ -82,7 +82,7 @@ class Index:
 
             # Return the combined HTML with the vis.js visualization
             return style + link + form_html  + '''
-                <div id="network" style="width: 100%; height: 500px; border: 1px solid lightgray;"></div>
+                <div id="network" style="width: 80%; height: 500px; border: 1px solid lightgray;"></div>
                 <script type="text/javascript">
                     var data = ''' + vis_json + ''';
 
