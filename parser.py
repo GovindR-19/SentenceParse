@@ -3,7 +3,7 @@ from nltk import word_tokenize, pos_tag
 from nltk.chunk import RegexpParser
 from nltk.tree import Tree
 
-# Define grammar to identify phrases
+# Define grammar to identify phrase components
 grammar = r'''
         S:  {<NP><VP>}                    
         NP: {<DT>?<JJ.*>*<NN.*>+}         

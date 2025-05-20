@@ -26,12 +26,13 @@ def vis_tree(parsed_chunks):
             edges.append({"from": tag_id, "to": word_id})
         return parent_id
 
-    ##Special case for the root node
+    ##Starting with the root node S and adding subsequent nodes
     root_id = add_node("S")  
     for label, tokens in parsed_chunks:
         subtree_id = add_edge(label, tokens)
         edges.append({"from": root_id, "to": subtree_id})
 
+    ## Returning JSON object to viz.js
     return json.dumps({"nodes": nodes, "edges": edges})
 
 ## Example 
