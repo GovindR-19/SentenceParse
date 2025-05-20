@@ -1,4 +1,4 @@
-
+## Assigning HTML elements for webpage
 form_html = ''' <h1>Sentence Parser</h1>
             <form method="POST">
                 <textarea id="text_box" name="sentence" rows="4"></textarea><br>
@@ -78,9 +78,7 @@ urls = ( "/", "Index")
 app = web.application(urls, globals())
 
 
-
-
-## Building the UL LI tag tree for vis.py
+## Method to build the Syntatic tree using ul/li tags
 def getResult(result):
     output = '''<div id="syntaxTree" style="width: 100%; height: 500px; border: 1px solid lightgray;">'''
     output += "<ul>"
