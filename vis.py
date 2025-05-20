@@ -1,10 +1,12 @@
 import json
 
-def build_visjs_data(parsed_chunks):
+def vis_tree(parsed_chunks):
+    ##Initiating nodes and edges variables
     nodes = []
     edges = []
     node_id = 0
 
+    ## Method to add node to tree
     def add_node(label):
         nonlocal node_id
         nodes.append({"id": node_id, "label": label})
@@ -14,6 +16,8 @@ def build_visjs_data(parsed_chunks):
 
     def process_chunk(label, tokens):
         parent_id = add_node(label)
+
+        ##For loop to add nodes to edges
         for word, tag in tokens:
             tag_id = add_node(tag)
             word_id = add_node(word)
@@ -21,7 +25,8 @@ def build_visjs_data(parsed_chunks):
             edges.append({"from": tag_id, "to": word_id})
         return parent_id
 
-    root_id = add_node("S")  # Sentence root
+    ##Special case for the root node
+    root_id = add_node("S")  
     for label, tokens in parsed_chunks:
         subtree_id = process_chunk(label, tokens)
         edges.append({"from": root_id, "to": subtree_id})
@@ -34,5 +39,5 @@ if __name__ == "__main__":
         ("NP", [("The", "DT"), ("cat", "NN")]),
         ("VP", [("plays", "VBZ"), ("piano", "NN")])
     ]
-    vis_json = build_visjs_data(sample)
+    vis_json = vis_tree(sample)
     print(vis_json)

@@ -1,4 +1,3 @@
-import nltk
 from nltk import word_tokenize, pos_tag
 from nltk.chunk import RegexpParser
 from nltk.tree import Tree
@@ -6,7 +5,7 @@ from nltk.tree import Tree
 # Define grammar to identify phrases
 grammar = r'''
     S: {<NP><VP>}                       # Sentence structure
-    NP: {<DT>?<JJ>*<NN.*>}              # Noun Phrase
+    NP: {<DT>?<JJ>*<NN.*>}         
     VP: {<VB.*><NP|PP|CLAUSE|JJ>+}      # Verb Phrase
     PP: {<IN><NP>}                      # Prepositional Phrase
 '''

@@ -1,6 +1,6 @@
 import web
 from parser import getChunks
-from vis import build_visjs_data
+from vis import vis_tree
 
 urls = ("/", "Index")
 app = web.application(urls, globals())
@@ -11,41 +11,7 @@ form_html = ''' <h2>Sentence Parser</h2>
                 <input type="submit" value="Parse">
             </form>'''
 
-style = '''<style>
-                ul {
-                    list-style-type: none;
-                    padding-left: 20px;
-                }
-
-                li {
-                    margin: 4px 0;
-                    font-family: sans-serif;
-                    font-size: 14px;
-                }
-            /* li::before {
-                    content: "• ";
-                    color: #3498db;  /* blue bullet */
-                } */
-                li > ul {
-                    margin-left: 15px;
-                    border-left: 2px solid #ccc;
-                    padding-left: 10px;
-                }
-
-                li > ul > li {
-                    color: #2c3e50;
-                }
-
-            /* li > ul > li::before {
-                    content: "↳ ";
-                    color: #95a5a6;  /* gray pointer */
-                } */
-
-                body {
-                    padding: 20px;
-                }
-            </style>
-'''
+style = '''<link rel="stylesheet" href="style.css">'''
 
 link = ''' <link href="https://unpkg.com/vis-network/styles/vis-network.min.css" rel="stylesheet" type="text/css" />
             <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
@@ -75,7 +41,7 @@ class Index:
             result = getChunks(sentence)
 
             # Build the JSON data for vis.js
-            vis_json = build_visjs_data(result)
+            vis_json = vis_tree(result)
 
             # Optionally, you can use the getResult function for the text-based tree view
             htmlOutput = getResult(result)
