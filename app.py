@@ -1,9 +1,3 @@
-import web
-from parser import getChunks
-from vis import vis_tree
-
-urls = ( "/", "Index")
-app = web.application(urls, globals())
 
 form_html = ''' <h1>Sentence Parser</h1>
             <form method="POST">
@@ -66,6 +60,25 @@ style = '''
 link = ''' <link href="https://unpkg.com/vis-network/styles/vis-network.min.css" rel="stylesheet" type="text/css" />
             <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
         '''
+
+
+
+
+
+
+
+
+
+
+import web
+from parser import getChunks
+from vis import vis_tree
+
+urls = ( "/", "Index")
+app = web.application(urls, globals())
+
+
+
 
 ## Building the UL LI tag tree for vis.py
 def getResult(result):

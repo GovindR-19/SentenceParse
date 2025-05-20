@@ -37,8 +37,8 @@ def vis_tree(parsed_chunks):
 ## Example 
 if __name__ == "__main__":
     sample = [
-                ("NP", [("The", "DT"), ("cat", "NN")]),
-                ("VP", [("plays", "VBZ"), ("piano", "NN")])
+                ("NP", [("The", "DT"), ("dog", "NN")]),
+                ("VP", [("plays", "VBZ"), ("catch", "VB")])
             ]
     vis_json = vis_tree(sample)
     print(vis_json)
