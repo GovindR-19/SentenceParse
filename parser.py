@@ -1,13 +1,14 @@
+import string
 from nltk import word_tokenize, pos_tag
 from nltk.chunk import RegexpParser
 from nltk.tree import Tree
 
 # Define grammar to identify phrases
 grammar = r'''
-    S: {<NP><VP>}                       # Sentence structure
-    NP: {<DT>?<JJ>*<NN.*>}         
-    VP: {<VB.*><NP|PP|CLAUSE|JJ>+}      # Verb Phrase
-    PP: {<IN><NP>}                      # Prepositional Phrase
+   S:  {<NP><VP>}                    
+NP: {<DT>?<JJ.*>*<NN.*>+}         
+VP: {<VB.*><NP|PP|ADJP|RB.*>*}    
+PP: {<IN><NP>}                   
 '''
 
 chunk_parser = RegexpParser(grammar)
@@ -34,10 +35,10 @@ def simplifyChunks(tree):
 
     return simplified
 
-# Tokenize, tag, chunk, and simplify the sentence
-
+## Tokenising a sentence and adding tags
 def getChunks(sentence):
     tokens = word_tokenize(sentence)
+    tokens = [t for t in tokens if t not in string.punctuation]   ## Filtering out .,?!
     tags = pos_tag(tokens)
     chunk_tree = chunk_parser.parse(tags)
     return simplifyChunks(chunk_tree)
