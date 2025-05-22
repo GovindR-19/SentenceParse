@@ -40,6 +40,7 @@ def getChunks(sentence):
     tokens = [t for t in tokens if t not in string.punctuation]     ## Filtering out .,?!
     tags = pos_tag(tokens)                                          ## Assigning tags to tokens
     chunk_tree = chunk_parser.parse(tags)                           ## Further refining tags allocation
+    chunk_tree.pretty_print()
     return generateTree(chunk_tree)
 
 sentence = "The quick brown fox jumped over the lazy dog"
